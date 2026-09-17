@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>شفاء | إدارة العيادة</title>
+  <meta name="description" content="نظام عربي لإدارة العيادات الطبية في مصر">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="extra.css"><link rel="stylesheet" href="controls.css"><link rel="stylesheet" href="attachments.css"><link rel="stylesheet" href="compress.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand"><span class="brandmark">ش</span><div><b>شفاء</b><small>لإدارة العيادات</small></div></div>
+  <nav id="nav">
+    <button class="nav active" data-view="dashboard"><span>⌂</span> الرئيسية</button>
+    <button class="nav" data-view="appointments"><span>◷</span> المواعيد <i>8</i></button>
+    <button class="nav" data-view="patients"><span>♙</span> المرضى</button>
+    <button class="nav" data-view="prescriptions"><span>✚</span> الروشتات</button>
+    <button class="nav" data-view="finance"><span>ج</span> الحسابات</button>
+    <button class="nav" data-view="doctor"><span>⚕</span> قسم الطبيب</button>
+  </nav>
+  <div class="clinic-card"><span class="pulse"></span><b>عيادة النور</b><small>فرع مدينة نصر</small><small>واتساب: ٠١٠ ١٢٣٤ ٥٦٧٨</small></div>
+  <button class="profile"><span class="avatar">م</span><div><b>الطبيب المسؤول</b><small>مدير العيادة</small></div><span>⋮</span></button>
+</aside>
+<main>
+  <header><button class="menu" id="menu">☰</button><div><h1 id="pageTitle">صباح الخير، دكتور</h1><p id="pageSub">إليك ملخص العيادة اليوم، الخميس ١٧ سبتمبر</p></div><div class="header-actions"><button class="icon">⌕</button><button class="icon">♢<span class="dot"></span></button><button class="primary" data-open="appointment">＋ حجز موعد</button></div></header>
+
+  <section class="view active" id="dashboard">
+    <div class="stats">
+      <article><div class="stat-icon blue">◷</div><div><span>مواعيد اليوم</span><strong>١٨</strong><small class="up">↑ ٣ عن أمس</small></div></article>
+      <article><div class="stat-icon green">✓</div><div><span>تم الكشف</span><strong>١٠</strong><small>٥٦٪ من المواعيد</small></div></article>
+      <article><div class="stat-icon amber">⌛</div><div><span>في الانتظار</span><strong>٥</strong><small>متوسط الانتظار ١٢ دقيقة</small></div></article>
+      <article><div class="stat-icon purple">ج</div><div><span>إيراد اليوم</span><strong>٤٬٧٥٠ <em>ج.م</em></strong><small class="up">↑ ١٢٪ هذا الأسبوع</small></div></article>
+    </div>
+    <div class="grid">
+      <section class="panel schedule"><div class="panel-head"><div><h2>مواعيد اليوم</h2><p>٨ مواعيد متبقية</p></div><button class="link" data-viewlink="appointments">عرض الكل ←</button></div><div id="todayList"></div></section>
+      <section class="panel queue"><div class="panel-head"><div><h2>قائمة الانتظار</h2><p>٥ مرضى بانتظار الكشف</p></div><span class="live">مباشر</span></div><div id="queueList"></div></section>
+    </div>
+    <div class="bottom-grid">
+      <section class="panel"><div class="panel-head"><div><h2>الإيرادات هذا الأسبوع</h2><p>إجمالي ٢٤٬٨٠٠ ج.م</p></div><select><option>هذا الأسبوع</option></select></div><div class="chart" id="chart"></div><div class="days"><span>السبت</span><span>الأحد</span><span>الاثنين</span><span>الثلاثاء</span><span>الأربعاء</span><span>الخميس</span></div></section>
+      <section class="panel quick"><div class="panel-head"><h2>إجراءات سريعة</h2></div><button data-open="patient"><span>♙</span><div><b>إضافة مريض جديد</b><small>إنشاء ملف طبي</small></div>←</button><button data-open="prescription"><span>✚</span><div><b>كتابة روشتة</b><small>إنشاء وطباعة روشتة</small></div>←</button><button data-viewlink="finance"><span>▣</span><div><b>تسجيل مصروف</b><small>إضافة مصروف للعيادة</small></div>←</button></section>
+    </div>
+  </section>
+
+  <section class="view" id="appointments"><div class="section-title"><div><h2>المواعيد</h2><p>مرتبة تلقائيًا حسب التاريخ والوقت</p></div><div><button class="secondary" id="printDaily">طباعة كشف اليوم</button> <button class="primary" data-open="appointment">＋ حجز جديد</button></div></div><div class="booking-note"><b>نظام المتابعة:</b> عند إنهاء الكشف يتم إنشاء استشارة تلقائيًا بعد ٧ أيام في نفس الموعد.</div><div class="filters appointment-filters"><button class="filter active" data-filter="all">الكل</button><button class="filter" data-filter="كشف جديد">الكشف</button><button class="filter" data-filter="استشارة">الاستشارات</button><span id="appointmentCount"></span></div><div class="panel table-wrap"><table><thead><tr><th>التاريخ</th><th>الوقت</th><th>المريض</th><th>نوع الزيارة</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody id="appointmentsTable"></tbody></table></div></section>
+  <section class="view" id="patients"><div class="section-title"><div><h2>المرضى</h2><p>سجلات المرضى والملفات الطبية</p></div><button class="primary" data-open="patient">＋ مريض جديد</button></div><div class="filters"><input id="patientSearch" placeholder="ابحث بالاسم أو رقم الهاتف..."><span id="patientCount"></span></div><div class="patient-grid" id="patientGrid"></div></section>
+  <section class="view" id="prescriptions"><div class="section-title"><div><h2>الروشتات</h2><p>إنشاء ومراجعة الروشتات الطبية</p></div><button class="primary" data-open="prescription">＋ روشتة جديدة</button></div><div class="empty-card"><div>Rx</div><h3>روشتة إلكترونية واضحة</h3><p>اختر المريض، أضف الأدوية والجرعات، ثم اطبعها أو احفظها.</p><button class="primary" data-open="prescription">إنشاء روشتة</button></div></section>
+  <section class="view" id="finance"><div class="section-title"><div><h2>الحسابات</h2><p>ملخص الإيرادات والمصروفات والتحصيل</p></div><button class="primary" id="expenseBtn">＋ تسجيل مصروف</button></div><div class="stats finance-stats"><article><span>إيرادات الشهر</span><strong>٨٤٬٥٠٠ ج.م</strong></article><article><span>المصروفات</span><strong>١٧٬٨٠٠ ج.م</strong></article><article><span>صافي الدخل</span><strong>٦٦٬٧٠٠ ج.م</strong></article></div><div class="panel table-wrap"><h2>آخر المعاملات</h2><table><thead><tr><th>التاريخ</th><th>البيان</th><th>النوع</th><th>المبلغ</th></tr></thead><tbody><tr><td>١٧ سبتمبر</td><td>كشف — مريض تجريبي ١</td><td><span class="status done">إيراد</span></td><td>٤٥٠ ج.م</td></tr><tr><td>١٧ سبتمبر</td><td>مستلزمات طبية</td><td><span class="status waiting">مصروف</span></td><td>١٬٢٠٠ ج.م</td></tr></tbody></table></div></section>
+  <section class="view" id="doctor"><div class="section-title"><div><h2>قسم الطبيب</h2><p>مساحة خاصة لإدارة يوم العمل والتنبيهات</p></div><span class="status done">تم تسجيل الدخول: الطبيب المسؤول</span></div><div class="doctor-grid"><section class="panel"><div class="panel-head"><div><h2>تنبيهات اليوم</h2><p>تظهر قبل الموعد بالمدة المحددة</p></div><span class="live">٣ تنبيهات</span></div><div id="doctorAlerts"></div></section><section class="panel settings"><h2>إعدادات الطبيب</h2><label>مدة الاستشارة بعد الكشف <select id="followupDays"><option value="7">بعد ٧ أيام</option><option value="14">بعد ١٤ يومًا</option><option value="30">بعد شهر</option></select></label><label>التنبيه قبل الموعد <select id="alertBefore"><option>١٥ دقيقة</option><option selected>٣٠ دقيقة</option><option>٦٠ دقيقة</option></select></label><label class="switchline">إظهار بيانات المريض للطبيب فقط <input type="checkbox" checked></label><button class="primary" id="saveSettings">حفظ الإعدادات</button></section></div><section class="panel daily-report"><div class="panel-head"><div><h2>الإصدار اليومي</h2><p>الكشوفات والاستشارات مرتبة بالمواعيد</p></div><button class="secondary" id="printDoctorReport">طباعة التقرير</button></div><div class="report-summary"><span>إجمالي اليوم <b id="dailyTotal"></b></span><span>كشوفات <b id="examTotal"></b></span><span>استشارات <b id="consultTotal"></b></span></div><div class="table-wrap"><table><thead><tr><th>الترتيب</th><th>الوقت</th><th>المريض</th><th>نوع الزيارة</th><th>الحالة</th></tr></thead><tbody id="dailyReport"></tbody></table></div></section></section>
+</main>
+
+<dialog id="modal"><form method="dialog" id="modalForm"><div class="modal-head"><div><h2 id="modalTitle"></h2><p id="modalDesc"></p></div><button value="cancel" class="close">×</button></div><div id="modalBody"></div><div class="modal-actions"><button value="cancel" class="secondary">إلغاء</button><button value="default" class="primary" id="saveBtn">حفظ</button></div></form></dialog>
+<dialog id="filesModal"><div class="files-dialog"><div class="modal-head"><div><h2 id="filesTitle">مرفقات المريض</h2><p>الروشتات والأشعة والتحاليل بصيغة JPG</p></div><button class="close" onclick="filesModal.close()">×</button></div><div class="upload-row"><select id="fileType"><option>روشتة</option><option>أشعة</option><option>تحاليل</option></select><label class="upload-btn">＋ إضافة صورة JPG<input id="fileInput" type="file" accept="image/jpeg,.jpg,.jpeg" hidden></label></div><div class="attachment-tabs"><button class="filter active" data-attach-filter="الكل">الكل</button><button class="filter" data-attach-filter="روشتة">الروشتات</button><button class="filter" data-attach-filter="أشعة">الأشعة</button><button class="filter" data-attach-filter="تحاليل">التحاليل</button></div><div id="filesGrid" class="files-grid"></div><p id="filesEmpty" class="files-empty">لا توجد مرفقات لهذا المريض حتى الآن.</p></div></dialog>
+<div class="toast" id="toast">تم الحفظ بنجاح</div>
+<script src="app.js"></script><script src="attachments.js"></script><script src="compress.js"></script>
+</body></html>
